@@ -1,0 +1,26 @@
+name: mediapp
+services:
+- name: web
+  github:
+    branch: main
+    repo: siddharth1012/mediapp
+  build_command: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+  run_command: gunicorn mediapp.wsgi:application --workers 2 --worker-class sync --bind 0.0.0.0:8080 --timeout 30
+  envs:
+  - key: SECRET_KEY
+    value: ${SECRET_KEY}
+    type: SECRET
+  - key: DEBUG
+    value: "False"
+  - key: ALLOWED_HOSTS
+    value: ${APP_DOMAIN}
+  - key: DATABASE_URL
+    value: ${db.connection_string}
+  http_port: 8080
+  health_check:
+    http_path: /
+  
+databases:
+- name: db
+  engine: PG
+  version: "14"
