@@ -49,11 +49,10 @@ termcolor==2.4.0
 threadpoolctl==3.2.0
 python-decouple==3.8
 psycopg2-binary==2.9.9
-python-decouple==3.8
-psycopg2-binary==2.9.9
 typing_extensions==4.9.0
 tzdata==2023.4
 urllib3==2.1.0
 Werkzeug==3.0.1
 whitenoise==6.6.0
 wrapt==1.14.1
+setuptools>=68.0.0
